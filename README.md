@@ -22,7 +22,7 @@ La mise-en-place d’un réseau d’entreprise sécurisé avec des outils open s
     
 Cliquez sur Ecrire, il vous demandera la permission de formater la carte vous donnez votre consentement et attendez la fin de la procédure.
 
-Débranchez et rebranchez votre périphérique et ouvrez la partition boot, vous trouverez une liste de fichiers et de dossiers que vous ouvrirez config.txt et
+Débranchez et rebranchez votre périphérique et ouvrez la partition boot, vous trouverez une liste de fichiers et de dossiers ouvrire config.txt et
 à la fin du fichier, ajoutez les lignes suivantes :
 
     over_voltage=4
