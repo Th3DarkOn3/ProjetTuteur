@@ -197,7 +197,7 @@ server=8.8.4.4
 
 ````
 
-Ed ora attiviamo il servizio
+Et maintenant nous activons le service
 
 ````
 
@@ -219,7 +219,7 @@ Example :
 
 # Serveur VPN
 
-Per il VPN utilizzero OpenVPN servizio open source e gratuito:
+Pour le VPN, nous utiliserons OpenVPN service open source et gratuit :
 
 ````
 
@@ -357,9 +357,9 @@ comp-lzo # Compression - must be turned on at both end
 persist-key
 persist-tun
 
-push "dhcp-option DNS indirizzo_ip_dns_interno"
-push "dhcp-option DOMAIN dominio_localo"
-push "route indirizzo_ip_rete_interna maschera_rete_interna"
+push "dhcp-option DNS adresse_ip_dns_locale"
+push "dhcp-option DOMAIN domaine_local"
+push "route adresse_ip_réseau_local masque_réseau_local"
 
 status /var/log/openvpn-status.log
 
@@ -384,7 +384,7 @@ Ajouter des règles au pare-feu pour autoriser la connexion au VPN
 réadapter la règle suivante :
 
 ````
-iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 1030 -j ACCEPT
+iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT
 iptables -A INPUT -i tun0 -j ACCEPT
 iptables -A FORWARD -i tun0 -p icmp -j ACCEPT
 iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
