@@ -32,7 +32,7 @@ Débranchez la carte SD de votre ordinateur et insérez-la dans le bon l’empla
 
 ### Configuration:
 
--Connectez votre raspberry pi ( l’interface intégrée à la carte doit être connectée au web, l’adaptateur USB au switch, et enfin connectez un écran et un clavier)
+- Connectez votre raspberry pi ( l’interface intégrée à la carte doit être connectée au web, l’adaptateur USB au switch, et enfin connectez un écran et un clavier)
 - Suivez la procédure d’installation et entrez le nom d’utilisateur et le mot de passe qui vous conviennent.
 - Après le redémarrage, vous serez invité à saisir vos informations d’identification, à entrer celles que vous avez configurées à l’étape précédente et à vous d'accedez
 - Tout d’abord, nous allons dans le dossier système /etc et nous créons un dossier pour héberger notre script
