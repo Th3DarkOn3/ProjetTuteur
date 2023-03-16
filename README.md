@@ -6,7 +6,7 @@ La mise-en-place d’un réseau d’entreprise sécurisé avec des outils open s
 
 ### Matériel requis :
   - Raspberry pi 4B 2Go ou plus
-  - Microsd 16 Go ou plus + adaptateur micros --> USB
+  - Microsd 16 Go ou plus + adaptateur microSD --> USB
   - Adaptateur USB --> RJ45 compatible avec Debian
   - Un PC ou un mac connecté à Internet
   
@@ -22,7 +22,7 @@ La mise-en-place d’un réseau d’entreprise sécurisé avec des outils open s
     
 Cliquez sur Ecrire, il vous demandera la permission de formater la carte vous donnez votre consentement et attendez la fin de la procédure.
 
-Débranchez et rebranchez votre périphérique et ouvrez la partition boot, vous trouverez une liste de fichiers et de dossiers ouvrire config.txt et
+Débranchez et rebranchez votre périphérique et ouvrez la partition boot, vous trouverez une liste de fichiers et de dossiers, ouvrez le fichier config.txt et
 à la fin du fichier, ajoutez les lignes suivantes :
 
     over_voltage=4
@@ -32,7 +32,7 @@ Débranchez la carte SD de votre ordinateur et insérez-la dans le bon l’empla
 
 ### Configuration:
 
-- Connectez votre raspberry pi ( l’interface intégrée à la carte doit être connectée au web, l’adaptateur USB au switch, et enfin connectez un écran et un clavier)
+- Connectez votre raspberry pi ( l’interface intégrée à la carte doit être connectée au web, l’adaptateur USB --> RJ45 au switch, et enfin connectez un écran et un clavier)
 - Suivez la procédure d’installation et entrez le nom d’utilisateur et le mot de passe qui vous conviennent.
 - Après le redémarrage, vous serez invité à saisir vos informations d’identification, à entrer celles que vous avez configurées à l’étape précédente et à vous d'accedez
 - Tout d’abord, nous allons dans le dossier système /etc et nous créons un dossier pour héberger notre script
@@ -103,6 +103,12 @@ iptables -A  FOWARD -i [Interface_input] -o [Interface_output] -p [protocole] --
              OUTPUT
 						 
 ````
+
+INPUT = Signaux entrants dans le routeur
+
+OUTPUT = Signaux qui sort du router
+
+FORWARD = signaux en transit d’une interface à l’autre du routeur
 
 Voici 3 exemples de règles
 
@@ -219,7 +225,9 @@ Example :
 
 # Serveur VPN
 
-Pour le VPN, nous utiliserons OpenVPN service open source et gratuit :
+Pour le VPN, nous utiliserons OpenVPN service open source et gratuit.
+
+Installation:
 
 ````
 
@@ -377,7 +385,7 @@ systemctl start openvpn@server.service
 
 ````
 
-##Côté Routeur
+## Côté Routeur
 
 Ajouter des règles au pare-feu pour autoriser la connexion au VPN
 
@@ -392,7 +400,7 @@ iptables -A FORWARD -i tun0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCE
 
 ````
 
-Copiez les fichiers suivants du serveur vers le client dans le dossier openvpn/config ( le chemin du dossier change en fonction du système d’exploitation )
+Copiez les fichiers suivants du serveur vers le client dans le dossier openvpn/config ( le debut du chemin du dossier change en fonction du système d’exploitation )
 
 client 01:
 
