@@ -486,3 +486,31 @@ network:
 			nameservers:
 				addresses: [172.16.1.1, 8.8.8.8]
 ````
+
+Installer le service dnsmasq qui va jouer le role de DHCP 
+
+````
+sudo apt install dnsmasq
+````
+
+Le fichier dnsmasq.conf est générer dans /etc/ en étant déja préremplie. Nous allons le mettre de coté et en éditer un nouveau
+
+````
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+````
+
+Puis nous allons partir d'un nouveau fichier vièrge
+
+
+````
+sudo vim /etc/dnsmasq.conf
+````
+
+Et y rentrer la configuration suivante
+
+````
+log-dhcp
+dhcp-range=172.16.1.100,172.16.1.200,12h
+dhcp-option=option:netmask,255.255.255.0
+dhcp-option=option:router,172.16.1.1,8.8.8.8
+````
