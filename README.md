@@ -455,7 +455,7 @@ verb 3
 
 # Serveur de fichier OpenMediaVault
 
-Pour installé le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers :
+Pour installer le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers :
 OpenMediaVault-Plugin-Developers/installScript
 
 Attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit)
