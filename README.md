@@ -452,3 +452,13 @@ comp-lzo
 verb 3
 
 ````
+
+Serveur de fichier OpenMediaVault
+
+Pour installé le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers :
+OpenMediaVault-Plugin-Developers/installScript
+
+Attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit)
+
+Pour configurer le serveur de fichier OpenMediaVault vous pouvez suivre la vidéo suivante :
+https://youtu.be/19SP7Zv-1g8 
