@@ -457,7 +457,7 @@ Enfin, des itinéraires statiques doivent être ajoutés au client pour assurer 
 
 Exemple de script qui crée l’itinéraire statique et connecte le client à un hypothétique serveur NAS :
 
-LINK
+https://github.com/Th3DarkOn3/ProjetTuteur/tree/main/Documentation/Add_Network_shared_folderVPN
 
 # Serveur de fichier OpenMediaVault
 
