@@ -497,24 +497,32 @@ Installer dnsmasq
 sudo apt install dnsmasq
 ````
 
-Le fichier dnsmasq.conf est générer dans /etc/ en étant déja préremplie. Nous allons le mettre de coté et en éditer un nouveau
+Le fichier dnsmasq.conf est générer dans /etc/ en étant déja préremplie. Nous allons le mettre de coté.
 
 ````
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
 ````
 
-Puis nous allons partir d'un nouveau fichier vièrge
+Puis en éditer un nouveau pour partir d'un fichier vièrge
 
 
 ````
 sudo vim /etc/dnsmasq.conf
 ````
 
-Et y rentrer la configuration suivante
+Rentrer-y la configuration suivante
 
 ````
 log-dhcp
 dhcp-range=172.16.1.100,172.16.1.200,12h
 dhcp-option=option:netmask,255.255.255.0
 dhcp-option=option:router,172.16.1.1,8.8.8.8
+````
+
+Activer le service
+
+````
+sudo systemctl enable dnsmasq.service
+sudo systemctl start dnsmasq.service
+
 ````
