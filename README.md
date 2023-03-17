@@ -453,6 +453,12 @@ verb 3
 
 ````
 
+Enfin, des itinéraires statiques doivent être ajoutés au client pour assurer la transition via le VPN pendant les actions qui l’exigent
+
+Exemple de script qui crée l’itinéraire statique et connecte le client à un hypothétique serveur NAS :
+
+LINK
+
 # Serveur de fichier OpenMediaVault
 
 - Pour installer le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers, attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit): https://github.com/OpenMediaVault-Plugin-Developers/installScript
