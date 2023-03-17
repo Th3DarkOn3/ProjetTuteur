@@ -455,14 +455,16 @@ verb 3
 
 # Serveur de fichier OpenMediaVault
 
-- Pour installer le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers :
-https://github.com/OpenMediaVault-Plugin-Developers/installScript
-
-Attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit) !
+- Pour installer le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers, attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit): https://github.com/OpenMediaVault-Plugin-Developers/installScript
 
 - Pour configurer le serveur de fichier OpenMediaVault vous pouvez suivre la vidéo suivante :
 https://youtu.be/19SP7Zv-1g8
 
 # Serveur DHCP
 
+Connectez vous en ssh  a votre serveur de fichier
 
+````
+ssh username@[VotreAddresseIP]
+
+````
