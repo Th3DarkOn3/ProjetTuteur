@@ -6,7 +6,7 @@ La mise-en-place d’un réseau d’entreprise sécurisé avec des outils open s
 
 ### Matériel requis :
   - Raspberry pi 4B 2Go ou plus
-  - Microsd 16 Go ou plus + adaptateur micros --> USB
+  - Microsd 16 Go ou plus + adaptateur microSD --> USB
   - Adaptateur USB --> RJ45 compatible avec Debian
   - Un PC ou un mac connecté à Internet
   
@@ -22,7 +22,7 @@ La mise-en-place d’un réseau d’entreprise sécurisé avec des outils open s
     
 Cliquez sur Ecrire, il vous demandera la permission de formater la carte vous donnez votre consentement et attendez la fin de la procédure.
 
-Débranchez et rebranchez votre périphérique et ouvrez la partition boot, vous trouverez une liste de fichiers et de dossiers ouvrire config.txt et
+Débranchez et rebranchez votre périphérique et ouvrez la partition boot, vous trouverez une liste de fichiers et de dossiers, ouvrez le fichier config.txt et
 à la fin du fichier, ajoutez les lignes suivantes :
 
     over_voltage=4
@@ -32,7 +32,7 @@ Débranchez la carte SD de votre ordinateur et insérez-la dans le bon l’empla
 
 ### Configuration:
 
-- Connectez votre raspberry pi ( l’interface intégrée à la carte doit être connectée au web, l’adaptateur USB au switch, et enfin connectez un écran et un clavier)
+- Connectez votre raspberry pi ( l’interface intégrée à la carte doit être connectée au web, l’adaptateur USB --> RJ45 au switch, et enfin connectez un écran et un clavier)
 - Suivez la procédure d’installation et entrez le nom d’utilisateur et le mot de passe qui vous conviennent.
 - Après le redémarrage, vous serez invité à saisir vos informations d’identification, à entrer celles que vous avez configurées à l’étape précédente et à vous d'accedez
 - Tout d’abord, nous allons dans le dossier système /etc et nous créons un dossier pour héberger notre script
@@ -103,6 +103,12 @@ iptables -A  FOWARD -i [Interface_input] -o [Interface_output] -p [protocole] --
              OUTPUT
 						 
 ````
+
+INPUT = Signaux entrants dans le routeur
+
+OUTPUT = Signaux qui sort du router
+
+FORWARD = signaux en transit d’une interface à l’autre du routeur
 
 Voici 3 exemples de règles
 
@@ -197,7 +203,7 @@ server=8.8.4.4
 
 ````
 
-Ed ora attiviamo il servizio
+Et maintenant nous activons le service
 
 ````
 
@@ -219,7 +225,9 @@ Example :
 
 # Serveur VPN
 
-Per il VPN utilizzero OpenVPN servizio open source e gratuito:
+Pour le VPN, nous utiliserons OpenVPN service open source et gratuit.
+
+Installation:
 
 ````
 
@@ -357,9 +365,9 @@ comp-lzo # Compression - must be turned on at both end
 persist-key
 persist-tun
 
-push "dhcp-option DNS indirizzo_ip_dns_interno"
-push "dhcp-option DOMAIN dominio_localo"
-push "route indirizzo_ip_rete_interna maschera_rete_interna"
+push "dhcp-option DNS adresse_ip_dns_locale"
+push "dhcp-option DOMAIN domaine_local"
+push "route adresse_ip_réseau_local masque_réseau_local"
 
 status /var/log/openvpn-status.log
 
@@ -377,14 +385,14 @@ systemctl start openvpn@server.service
 
 ````
 
-##Côté Routeur
+## Côté Routeur
 
 Ajouter des règles au pare-feu pour autoriser la connexion au VPN
 
 réadapter la règle suivante :
 
 ````
-iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 1030 -j ACCEPT
+iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 1194 -j ACCEPT
 iptables -A INPUT -i tun0 -j ACCEPT
 iptables -A FORWARD -i tun0 -p icmp -j ACCEPT
 iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -392,7 +400,7 @@ iptables -A FORWARD -i tun0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCE
 
 ````
 
-Copiez les fichiers suivants du serveur vers le client dans le dossier openvpn/config ( le chemin du dossier change en fonction du système d’exploitation )
+Copiez les fichiers suivants du serveur vers le client dans le dossier openvpn/config ( le debut du chemin du dossier change en fonction du système d’exploitation )
 
 client 01:
 
@@ -442,5 +450,79 @@ key client01.key
 comp-lzo
 
 verb 3
+
+````
+
+# Serveur de fichier OpenMediaVault
+
+- Pour installer le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers, attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit): https://github.com/OpenMediaVault-Plugin-Developers/installScript
+
+- Pour configurer le serveur de fichier OpenMediaVault vous pouvez suivre la vidéo suivante :
+https://youtu.be/19SP7Zv-1g8
+
+# Serveur DHCP
+
+### Connectez vous en ssh  a votre serveur de fichier
+
+````
+ssh username@[VotreAddresseIP]
+````
+
+### Attribué une ip fix a votre serveur de fichier 
+
+Editez le fichier config.yaml
+
+````
+sudo vim /etc/netplan/config.yaml
+````
+
+````
+network:
+	version: 2
+	renderer: networkd
+	ethernets:
+		eth0:
+			addresses:
+				- 172.16.1.250/24
+			gateway4: 172.16.1.1
+			nameservers:
+				addresses: [172.16.1.1, 8.8.8.8]
+````
+
+### Installation et configuration du service dnsmasq qui va jouer le role de DHCP 
+
+Installer dnsmasq
+
+````
+sudo apt install dnsmasq
+````
+
+Le fichier dnsmasq.conf est générer dans /etc/ en étant déja préremplie. Nous allons le mettre de coté.
+
+````
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+````
+
+Puis en éditer un nouveau pour partir d'un fichier vièrge
+
+
+````
+sudo vim /etc/dnsmasq.conf
+````
+
+Rentrer-y la configuration suivante
+
+````
+log-dhcp
+dhcp-range=172.16.1.100,172.16.1.200,12h
+dhcp-option=option:netmask,255.255.255.0
+dhcp-option=option:router,172.16.1.1,8.8.8.8
+````
+
+Activer le service
+
+````
+sudo systemctl enable dnsmasq.service
+sudo systemctl start dnsmasq.service
 
 ````
