@@ -466,9 +466,9 @@ https://github.com/Th3DarkOn3/ProjetTuteur/tree/main/Documentation/Add_Network_s
 - Pour configurer le serveur de fichier OpenMediaVault vous pouvez suivre la vidéo suivante :
 https://youtu.be/19SP7Zv-1g8
 
-# Serveur DHCP
+# Serveur DHCP (Sur un Raspberry Pi à part entière) 
 
-### Attribué une ip fix a votre serveur de fichier (Sur un Raspberry Pi à part entière) 
+### Attribué une ip fix a votre serveur de fichier 
 
 Installer le service Netplan
 ````
