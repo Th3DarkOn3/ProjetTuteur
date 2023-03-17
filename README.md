@@ -462,13 +462,15 @@ https://youtu.be/19SP7Zv-1g8
 
 # Serveur DHCP
 
-Connectez vous en ssh  a votre serveur de fichier
+### Connectez vous en ssh  a votre serveur de fichier
 
 ````
 ssh username@[VotreAddresseIP]
 ````
 
-Pour attribué une ip fix a votre serveur de fichier editez le fichier config.yaml
+### Attribué une ip fix a votre serveur de fichier 
+
+Editez le fichier config.yaml
 
 ````
 sudo vim /etc/netplan/config.yaml
@@ -487,7 +489,9 @@ network:
 				addresses: [172.16.1.1, 8.8.8.8]
 ````
 
-Installer le service dnsmasq qui va jouer le role de DHCP 
+### Installation et configuration du service dnsmasq qui va jouer le role de DHCP 
+
+Installer dnsmasq
 
 ````
 sudo apt install dnsmasq
