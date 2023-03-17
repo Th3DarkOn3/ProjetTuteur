@@ -470,6 +470,11 @@ https://youtu.be/19SP7Zv-1g8
 
 ### Attribué une ip fix a votre serveur de fichier (Sur un Raspberry Pi à part entière) 
 
+Installer le service Netplan
+````
+sudo apt install netplan.io
+````
+
 Editez le fichier config.yaml
 
 ````
