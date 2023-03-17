@@ -459,7 +459,7 @@ Exemple de script qui crée l’itinéraire statique et connecte le client à un
 
 https://github.com/Th3DarkOn3/ProjetTuteur/tree/main/Documentation/Add_Network_shared_folderVPN
 
-# Serveur de fichier OpenMediaVault
+# Serveur de fichier OpenMediaVault ( Sur un Rasberry Pi à part entière) 
 
 - Pour installer le serveur de fichier OpenMediaVault vous pouvez vous référer au Projet Github de OpenMediaVault Plugin Developers, attention le script d’installation ne fonctione que sur Raspberry Pi OS LITE (64 bit): https://github.com/OpenMediaVault-Plugin-Developers/installScript
 
@@ -468,20 +468,14 @@ https://youtu.be/19SP7Zv-1g8
 
 # Serveur DHCP
 
-### Connectez vous en ssh  a votre serveur de fichier
-
-````
-ssh username@[VotreAddresseIP]
-````
-
-### Attribué une ip fix a votre serveur de fichier 
+### Attribué une ip fix a votre serveur de fichier (Sur un Raspberry Pi à part entière) 
 
 Editez le fichier config.yaml
 
 ````
 sudo vim /etc/netplan/config.yaml
 ````
-
+Voici un exemple possible:
 ````
 network:
 	version: 2
@@ -495,11 +489,17 @@ network:
 				addresses: [172.16.1.1, 8.8.8.8]
 ````
 
+Vous pouvez appliquer avec la commande suivante
+````
+sudo netplan apply
+````
+
 ### Installation et configuration du service dnsmasq qui va jouer le role de DHCP 
 
 Installer dnsmasq
 
 ````
+sudo apt update && upgrade
 sudo apt install dnsmasq
 ````
 
