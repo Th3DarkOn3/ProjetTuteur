@@ -466,5 +466,23 @@ Connectez vous en ssh  a votre serveur de fichier
 
 ````
 ssh username@[VotreAddresseIP]
+````
 
+Pour attribué une ip fix a votre serveur de fichier editez le fichier config.yaml
+
+````
+sudo vim /etc/netplan/config.yaml
+````
+
+````
+network:
+	version: 2
+	renderer: networkd
+	ethernets:
+		eth0:
+			addresses:
+				- 172.16.1.250/24
+			gateway4: 172.16.1.1
+			nameservers:
+				addresses: [172.16.1.1, 8.8.8.8]
 ````
